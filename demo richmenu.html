@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LINE LIFF Example</title>
+  <!-- Add the LINE SDK -->
+  <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+</head>
+<body>
+  <h1>LINE LIFF Example</h1>
+  <form id="userForm">
+    <label for="userId">User ID:</label>
+    <input type="text" id="userId" name="userId" readonly>
+    <br>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <br>
+    <!-- Add more form fields as needed -->
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    // Initialize LIFF
+    liff.init({
+      liffId: '2002824145-nP4yGraD'
+    })
+    .then(() => {
+      // Get the LINE user's ID
+      liff.getProfile()
+        .then(profile => {
+          document.getElementById('userId').value = profile.userId;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+    // Submit form data
+    document.getElementById('userForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      // Collect form data
+      const formData = new FormData(this);
+      // Send formData to your server or process as needed
+      // Example: Send to a server using fetch API
+      fetch('https://script.google.com/macros/s/AKfycbxF20a-Ui6AVk4VGvi9DwPcGSKCQbhomFBTbCZKqYkjuJE1MlZ17tFAnBg8x7lpzBvQ/exec', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        // Handle the response as needed
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    });
+  </script>
+</body>
+</html>
