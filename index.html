@@ -1,66 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LINE LIFF Example</title>
-  <!-- Add the LINE SDK -->
-  <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <title>Your Online Store</title>
 </head>
-<body>
-  <h1>LINE LIFF Example</h1>
-  <form id="userForm">
-    <label for="userId">User ID:</label>
-    <input type="text" id="userId" name="userId" readonly>
-    <br>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
-    <br>
-    <!-- Add more form fields as needed -->
-    <br>
-    <button type="submit">Submit</button>
-  </form>
 
-  <script>
-    // Initialize LIFF
-    liff.init({
-      liffId: '2002824145-nP4yGraD'
-    })
-    .then(() => {
-      // Get the LINE user's ID
-      liff.getProfile()
-        .then(profile => {
-          document.getElementById('userId').value = profile.userId;
-        })
-        .catch(error => {
-          console.error(error);
+<body class="bg-gray-100">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-800 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold">Your Store</a>
+
+            <!-- Responsive Menu -->
+            <div class="hidden md:flex space-x-4">
+                <a href="#" class="hover:text-gray-300">Home</a>
+                <a href="#" class="hover:text-gray-300">Browse</a>
+                <a href="#" class="hover:text-gray-300">Info</a>
+                <a href="#" class="hover:text-gray-300">Cart</a>
+            </div>
+
+            <!-- Responsive Menu Icon -->
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-white focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Responsive Menu (Hidden by default) -->
+    <div id="responsive-menu" class="md:hidden bg-gray-800 text-white p-4 hidden">
+        <a href="#" class="block py-2">Home</a>
+        <a href="#" class="block py-2">Browse</a>
+        <a href="#" class="block py-2">Info</a>
+        <a href="#" class="block py-2">Cart</a>
+    </div>
+
+    <!-- Content Section with Cards -->
+    <div class="container mx-auto mt-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="bg-white p-4 rounded-md shadow-md">
+                <h2 class="text-xl font-semibold mb-2">Product 1</h2>
+                <p>Description of Product 1.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white p-4 rounded-md shadow-md">
+                <h2 class="text-xl font-semibold mb-2">Product 2</h2>
+                <p>Description of Product 2.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white p-4 rounded-md shadow-md">
+                <h2 class="text-xl font-semibold mb-2">Product 3</h2>
+                <p>Description of Product 3.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle responsive menu
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            var menu = document.getElementById('responsive-menu');
+            menu.classList.toggle('hidden');
         });
-    })
-    .catch(error => {
-      console.error(error);
-    });
+    </script>
 
-    // Submit form data
-    document.getElementById('userForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      // Collect form data
-      const formData = new FormData(this);
-      // Send formData to your server or process as needed
-      // Example: Send to a server using fetch API
-      fetch('https://script.google.com/macros/s/AKfycbxF20a-Ui6AVk4VGvi9DwPcGSKCQbhomFBTbCZKqYkjuJE1MlZ17tFAnBg8x7lpzBvQ/exec', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        // Handle the response as needed
-      })
-      .catch(error => {
-        console.error(error);
-      });
-    });
-  </script>
 </body>
+
 </html>
