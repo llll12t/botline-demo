@@ -1,111 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <title>Your Online Store</title>
+    <title>Register Account</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap" rel="stylesheet">
+   
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
+<body style="font-family: Noto Sans Thai;" class="bg-gray-100">
+<div class="h-screen">
+	<div x-data="app()" x-cloak>
+		<div class="max-w-3xl mx-auto px-4 py-10">
+				<div class="bg-white relative p-10 shadow rounded-lg w-6/6 md:w-5/6  lg:w-4/6 xl:w-3/6 mx-auto">	
+                    <div class="mb-5 text-center">
+                        <div class="mx-auto w-32 h-32 mb-2 border rounded-full relative bg-gray-100 mb-4 shadow-inset">
+                            <img src="" alt="Default Image" id="preview" class="object-cover w-full h-32 rounded-full">
+                        </div>
+                        <label for="file" class="cursor-pointer inline-flex justify-between items-center focus:outline-none border py-2 px-4 rounded-lg shadow-sm text-left text-gray-600 bg-white hover:bg-gray-100 font-medium">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-flex flex-shrink-0 w-6 h-6 -mt-1 mr-1" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="0" y="0" width="24" height="24" stroke="none"></rect>
+                                <path d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" />
+                                <circle cx="12" cy="13" r="3" />
+                            </svg>
+                            อัพโหลดรูป
+                            <input type="file" id="file" name="file" accept="image/*" class="hidden" @change="handleFileChange">
+                        </label>
+                        <div class="mx-auto w-48 text-gray-500 text-xs text-center mt-1">คลิกเพื่ออัพโหลดรูปของคุณ</div>
+                    </div>
+                    <div class="mb-5">
+                        <div class="relative">
+                            <input type="text" class="bg-gray-300 to-gray-100 w-full px-4 py-3 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium" placeholder="UserId">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <span class="material-symbols-outlined">fingerprint</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <div class="relative">
+                            <input type="text" class="bg-violet-600 w-full px-4 py-3 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium" placeholder="ชื่อ-สกุล">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <span class="material-symbols-outlined">signature</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <div class="relative">
+                            <input type="text" class="bg-violet-600 w-full px-4 py-3 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium" placeholder="เลขรหัสพนักงาน">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <span class="material-symbols-outlined">passkey</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <div class="relative">
+                            <input type="text" class="bg-violet-600 w-full px-4 py-3 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium" placeholder="ตำแหน่ง">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <span class="material-symbols-outlined">editor_choice</span>
+                        </div>
+                    </div>
+                   <br /> 
+                   <br />
+                        <button type="button" id="submitBtn" class="bg-gradient-to-b from-gray-800 to-gray-900 text-center w-full text-white py-4 px-4 rounded hover:bg-blue-700">บันทึกข้อมูล</button>
+                        
+					</div>
+				</div>
+			</div>
+	</div>
 
-<body class="bg-gray-100">
-
-    <!-- Navigation Bar -->
-    <nav class="bg-gray-800 text-white p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <!-- Logo -->
-            <a href="#" class="text-2xl font-bold">Your Store</a>
-
-            <!-- Responsive Menu -->
-            <div class="hidden md:flex space-x-4">
-                <a href="#" class="hover:text-gray-300">Home</a>
-                <a href="#" class="hover:text-gray-300">Browse</a>
-                <a href="#" class="hover:text-gray-300">Info</a>
-                <a href="#" class="hover:text-gray-300">Cart</a>
-            </div>
-
-            <!-- Responsive Menu Icon -->
-            <div class="md:hidden">
-                <button id="menu-toggle" class="text-white focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Responsive Menu (Hidden by default) -->
-    <div id="responsive-menu" class="md:hidden bg-gray-800 text-white p-4 hidden">
-        <a href="#" class="block py-2">Home</a>
-        <a href="#" class="block py-2">Browse</a>
-        <a href="#" class="block py-2">Info</a>
-        <a href="#" class="block py-2">Cart</a>
-    </div>
-
-    <!-- Content Section with Cards -->
-    <div class="container mx-auto mt-8">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Card 1 -->
-            <div class="bg-white p-4 rounded-md shadow-md">
-                <img src="https://marketingarsenal.io/wp-content/uploads/2023/05/interactive-product-demo-software.png" alt="Product 1" class="mb-4 rounded-md">
-                <h2 class="text-xl font-semibold mb-2">Product 1</h2>
-                <p>Description of Product 1.</p>
-                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">Order Now</button>
-                <a href="#" class="block mt-2">
-                    <svg class="h-6 w-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 3h18v18H3zM15 5l-3 3-3-3"></path>
-                    </svg>
-                    Google Icon
-                </a>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="bg-white p-4 rounded-md shadow-md">
-                <img src="https://blog.shakr.com/wp-content/uploads/2015/10/product-demos.png" alt="Product 2" class="mb-4 rounded-md">
-                <h2 class="text-xl font-semibold mb-2">Product 2</h2>
-                <p>Description of Product 2.</p>
-                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">Order Now</button>
-                <a href="#" class="block mt-2">
-                    <svg class="h-6 w-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 3h18v18H3zM15 5l-3 3-3-3"></path>
-                    </svg>
-                    Google Icon
-                </a>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="bg-white p-4 rounded-md shadow-md">
-                <img src="https://www.krishastudio.com/wp-content/uploads/2019/10/Main.jpg" alt="Product 3" class="mb-4 rounded-md">
-                <h2 class="text-xl font-semibold mb-2">Product 3</h2>
-                <p>Description of Product 3.</p>
-                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">Order Now</button>
-                <a href="#" class="block mt-2">
-                    <svg class="h-6 w-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 3h18v18H3zM15 5l-3 3-3-3"></path>
-                    </svg>
-                    Google Icon
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Toggle responsive menu
-        document.getElementById('menu-toggle').addEventListener('click', function () {
-            var menu = document.getElementById('responsive-menu');
-            menu.classList.toggle('hidden');
-        });
-    </script>
-
-</body>
-
-</html>
+    </body>
+            <script>
+                new Vue({
+                    data: {
+                        image: "" // Initialize the image variable
+                    },
+                    methods: {
+                        handleFileChange(event) {
+                            let file = event.target.files[0];
+                            let reader = new FileReader();
+                            reader.onload = (e) => this.image = e.target.result;
+                            reader.readAsDataURL(file);
+                        }
+                    }
+                });
+            </script>
+            <script>
+                let url = "https://script.google.com/macros/s/AKfycbyT6ulC_Ml7-F4NImd6vpp8LDuY4_ETpDIr5QmxOuCqiy02X3CJb10715kGTKyxeH-2/exec";
+                let fileInput = document.getElementById("file");
+                let imgPreview = document.getElementById("preview");
+                let userlineIdInput = document.getElementById("userlineId");
+                let nameIdInput = document.getElementById("nameId");
+                let roleId = document.getElementById("roleId");
+                let numberIdInput = document.getElementById("numberId");
+                let submitBtn = document.getElementById("submitBtn");
+            
+                // Set the initial image source
+                imgPreview.src = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
+            
+                // Function to convert a file to base64
+                function getBase64(file) {
+                    return new Promise((resolve, reject) => {
+                        let reader = new FileReader();
+                        reader.onload = () => resolve(reader.result.split(',')[1]);
+                        reader.onerror = error => reject(error);
+                        reader.readAsDataURL(file);
+                    });
+                }
+            
+                // Function to preview the selected image
+                function previewImage() {
+                    // Check if a file is selected
+                    if (fileInput.files.length > 0) {
+                        let file = fileInput.files[0];
+                        let reader = new FileReader();
+            
+                        reader.onload = function(e) {
+                            imgPreview.src = e.target.result;
+                        };
+            
+                        reader.readAsDataURL(file);
+                    }
+                }
+            
+                // Event listener for file input change
+                fileInput.addEventListener('change', () => {
+                    previewImage();
+                });
+            
+                // Function to validate the required fields
+                function validateForm() {
+                    const userlineId = userlineIdInput.value.trim();
+                    const nameId = nameIdInput.value.trim();
+                    const roleIdValue = roleId.value.trim();
+            
+                    // Check if any of the required fields is empty
+                    if (userlineId === '' || nameId === '' || roleIdValue === '') {
+                        return false;
+                    }
+            
+                    return true;
+                }
+            
+                // Event listener for submit button click
+                submitBtn.addEventListener('click', async (event) => {
+                    event.preventDefault(); // Prevent default form submission behavior
+            
+                    // Validate the required fields before proceeding
+                    if (!validateForm()) {
+                        // Display an error message if validation fails
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Validation Error',
+                            text: 'Please fill in all required fields.',
+                        });
+                        return;
+                    }
+            
+                    // Display confirmation dialog
+                    const isConfirmed = await showConfirmationDialog();
+            
+                    if (isConfirmed) {
+                        // User confirmed, proceed with form submission
+            
+                        // Disable the submit button
+                        submitBtn.disabled = true;
+            
+                        try {
+                            let obj;
+            
+                            // Check if a file is selected
+                            if (fileInput.files.length > 0) {
+                                let file = fileInput.files[0];
+                                let base64 = await getBase64(file);
+                                imgPreview.src = `data:${file.type};base64,${base64}`;
+            
+                                obj = {
+                                    base64: base64,
+                                    type: file.type,
+                                    name: file.name,
+                                    userlineId: userlineIdInput.value,
+                                    nameId: nameIdInput.value,
+                                    roleId: roleId.value,
+                                    numberId: numberIdInput.value
+                                };
+                            } else {
+                                obj = {
+                                    base64: "", // Empty base64 for default image
+                                    type: "image/png", // Assuming a PNG default image
+                                    name: "default.png", // Name for default image
+                                    userlineId: userlineIdInput.value,
+                                    nameId: nameIdInput.value,
+                                    roleId: roleId.value,
+                                    numberId: numberIdInput.value
+                                };
+                            }
+            
+                            Swal.fire({
+                                title: 'Uploading...',
+                                allowOutsideClick: false,
+                                onBeforeOpen: () => {
+                                    Swal.showLoading();
+                                }
+                            });
+            
+                            let response = await fetch(url, {
+                                method: "POST",
+                                body: JSON.stringify(obj)
+                            });
+            
+                            let data = await response.text();
+            
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: 'Data submitted successfully!',
+                            });
+            
+                            console.log(data);
+                        } catch (error) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'An error occurred while submitting data.',
+                            });
+            
+                            console.error(error);
+                        } finally {
+                            // Enable the submit button after successful upload or error
+                            submitBtn.disabled = false;
+                        }
+                    } else {
+                        // User canceled the submission
+                        Swal.fire('Submission Canceled', 'Your data has not been submitted.', 'info');
+                    }
+                });
+            
+                // Function to show a confirmation dialog
+                async function showConfirmationDialog() {
+                    const confirmation = await Swal.fire({
+                        title: 'ยืนยันการส่งข้อมูล',
+                        text: 'แน่ใจ ว่าคุณกำลังส่งข้อมูล?',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonText: 'ใช่, ส่งข้อมูล!',
+                        cancelButtonText: 'ไม่, ยกเลิก'
+                    });
+            
+                    return confirmation.isConfirmed;
+                }
+            
+            </script>
+            
+    </html>
