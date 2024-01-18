@@ -97,90 +97,30 @@
         }
             async function sendFlexMessage() {
             const flexMessage = {
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "image",
-                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",
-                "aspectMode": "cover",
-                "size": "full"
-              }
-            ],
-            "cornerRadius": "100px",
-            "width": "72px",
-            "height": "72px"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "ลงทะเบียนเรียบร้อยแล้ว",
-                    "color": "#000000"
-                  }
-                ],
-                "size": "sm",
-                "wrap": true
-              },
-              {
-                "type": "box",
-                "layout": "baseline",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "นาย เอ คนซวย",
-                    "size": "sm",
-                    "color": "#910A67",
-                    "weight": "bold"
-                  }
-                ],
-                "spacing": "sm",
-                "margin": "md"
-              },
-              {
-                "type": "box",
-                "layout": "baseline",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "ยินดีต้อนรับ",
-                    "size": "sm",
-                    "color": "#b0b0b0"
-                  }
-                ],
-                "spacing": "sm",
-                "margin": "md"
-              }
-            ]
-          }
-        ],
-        "spacing": "xl",
-        "paddingAll": "20px"
-      }
-    ],
-    "paddingAll": "0px"
-  }
-};
+                type: 'flex',
+                altText: 'ลงทะเบียนเรียบร้อย', // Change altText value here
+                contents: {
+                    type: 'bubble',
+                    body: {
+                        type: 'box',
+                        layout: 'vertical',
+                        contents: [
+                            {
+                                type: 'text',
+                                text: 'ลงทะเบียนเรียบร้อย!',
+                                weight: 'bold',
+                                size: 'lg',
+                                wrap: true,
+                            },
+                            // Add more content as needed
+                        ],
+                    },
+                },
+            };
 
-            await liff.sendMessages([flexMessage]);
+                await liff.sendMessages([flexMessage]);
                
             }
-
             </script>
             <script>
                 let url = "https://script.google.com/macros/s/AKfycbyT6ulC_Ml7-F4NImd6vpp8LDuY4_ETpDIr5QmxOuCqiy02X3CJb10715kGTKyxeH-2/exec";
